@@ -36,10 +36,12 @@ blueprint:
       selector:
         time:
     notifcation_title:
+      name: Notifcation Title
       description: Title of telegram notification
       selector:
         text:
     notification_message:
+      name: Notification Message
       description: Message of telegram notification
       selector:
         text:
