@@ -69,5 +69,5 @@ action:
     target: !input light_target
 
   - service: notify.history_notifs
-      data:
-        title: Motion Detected
+    data:
+      title: Motion Detected
