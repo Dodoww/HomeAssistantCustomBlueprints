@@ -35,6 +35,14 @@ blueprint:
       description: Automation does not run after this time.
       selector:
         time:
+    notifcation_title:
+      description: Title of telegram notification
+      selector:
+        text:
+    notification_message:
+      description: Message of telegram notification
+      selector:
+        text:
 # If motion is detected within the delay,
 # we restart the script.
 mode: restart
@@ -69,5 +77,5 @@ action:
   - alias: Send Notification
     service: notify.history_notifs
     data:
-      title: !input notifcation_message
-      message: "toto"
+      title: !input notifcation_title
+      message: !input notification_message
