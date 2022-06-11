@@ -19,11 +19,13 @@ blueprint:
     time_start:
       name: Schedule start time
       description: Automation only runs after this time.
+      default: "00:00:00"
       selector:
         time:
     time_stop:
       name: Schedule start stop
       description: Automation does not run after this time.
+      default: "00:00:00"
       selector:
         time:
 
