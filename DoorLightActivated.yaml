@@ -1,0 +1,86 @@
+blueprint:
+  name: Custom Door-activated Light
+  description: Turn on a light when door is oppened. Turn off when closed
+  domain: automation
+  source_url: https://github.com/Dodoww/HomeAssistantCustomBlueprints/blob/main/DoorLightActivated.yaml
+  input:
+    door_entity:
+      name: Door Sensor
+      selector:
+        entity:
+          domain: binary_sensor
+          device_class: door
+    light_target:
+      name: Light
+      selector:
+        target:
+          entity:
+            domain: light
+    time_start:
+      name: Schedule start time
+      description: Automation only runs after this time.
+      selector:
+        time:
+    time_stop:
+      name: Schedule start stop
+      description: Automation does not run after this time.
+      selector:
+        time:
+
+    on_action:
+      name: Custom Action To Run (Optional)
+      description: Select actions to run when door is opened.
+      default: []
+      selector:
+        action: {}
+    
+
+    notifcation_title:
+      name: Notification Title
+      description: Title of telegram notification
+      default: []
+      selector:
+        text:
+    notification_message:
+      name: Notification Message
+      description: Message of telegram notification
+      default: []
+      selector:
+        text:
+
+mode: single
+max_exceeded: silent
+
+trigger:
+  platform: state
+  entity_id: !input door_entity
+  from: "off"
+  to: "on"
+
+condition:
+  - condition: time
+    after: !input time_start
+    before: !input time_stop
+
+action:
+  - alias: "Turn on the light"
+    service: light.turn_on
+    target: !input light_target
+  - alias: "Wait until there is no door from device"
+    wait_for_trigger:
+      platform: state
+      entity_id: !input door_entity
+      from: "on"
+      to: "off"
+  - alias: "Turn off the light"
+    service: light.turn_off
+    target: !input light_target
+
+  - alias: Send Notification
+    service: notify.history_notifs
+    data:
+      title: !input notifcation_title
+      message: !input notification_message
+
+  - choose: []
+    default: !input 'on_action'
