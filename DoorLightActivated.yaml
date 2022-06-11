@@ -33,20 +33,6 @@ blueprint:
       default: []
       selector:
         action: {}
-    
-
-    notifcation_title:
-      name: Notification Title
-      description: Title of telegram notification
-      default: []
-      selector:
-        text:
-    notification_message:
-      name: Notification Message
-      description: Message of telegram notification
-      default: []
-      selector:
-        text:
 
 mode: single
 max_exceeded: silent
@@ -75,12 +61,5 @@ action:
   - alias: "Turn off the light"
     service: light.turn_off
     target: !input light_target
-
-  - alias: Send Notification
-    service: notify.history_notifs
-    data:
-      title: !input notifcation_title
-      message: !input notification_message
-
   - choose: []
     default: !input 'on_action'
