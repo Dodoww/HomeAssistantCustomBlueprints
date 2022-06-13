@@ -79,6 +79,8 @@ action:
       - service: wake_on_lan.send_magic_packet
         data:
           mac: !input webostv_mac
+          broadcast_address: !input webostv_broadcast
+          broadcast_port: !input webostv_port
   - wait_for_trigger:
     - platform: state
       entity_id: !input webostv
