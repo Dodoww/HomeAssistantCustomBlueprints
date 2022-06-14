@@ -28,13 +28,22 @@ blueprint:
       default: "00:00:00"
       selector:
         time:
-
     on_action:
       name: Custom Action To Run (Optional)
       description: Select actions to run when door is opened.
       default: []
       selector:
         action: {}
+    night_brightness:
+      name: Night brightness
+      description: Brightness, in night mode mode
+      default: 50
+      selector:
+        number:
+          min: 1.0
+          max: 100.0
+          step: 1.0
+          mode: slider
 
 mode: single
 max_exceeded: silent
@@ -53,6 +62,8 @@ condition:
 action:
   - alias: "Turn on the light"
     service: light.turn_on
+    data:
+      brightness_pct: !input night_brightness
     target: !input light_target
   - alias: "Wait until there is no door from device"
     wait_for_trigger:
