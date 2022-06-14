@@ -4,6 +4,26 @@ blueprint:
   domain: automation
   source_url: https://github.com/Dodoww/HomeAssistantCustomBlueprints/blob/main/DoorLightActivated.yaml
   input:
+    state_from: 
+      name: State When light is turned off
+      description: "The state when light is off"
+      default: off
+      selector:
+        options:
+          select: 
+            - on
+          - off
+      
+    state_to:
+      name: State When light is turned on
+      description: "The state when light is on"
+      default: on
+      selector:
+        select: 
+          options:
+            - on
+            - off
+      
     door_entity:
       name: Door Sensor
       selector:
@@ -51,8 +71,8 @@ max_exceeded: silent
 trigger:
   platform: state
   entity_id: !input door_entity
-  from: "off"
-  to: "on"
+  from: !input state_from
+  to: !input state_to
 
 condition:
   - condition: time
@@ -69,8 +89,8 @@ action:
     wait_for_trigger:
       platform: state
       entity_id: !input door_entity
-      from: "on"
-      to: "off"
+      from: !input state_to
+      to: !input state_from
   - alias: "Turn off the light"
     service: light.turn_off
     target: !input light_target
