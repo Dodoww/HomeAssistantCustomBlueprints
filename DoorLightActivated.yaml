@@ -11,8 +11,10 @@ blueprint:
       selector:
         select:
           options:
-            - "on"
-            - "off"
+            - label: ON
+              value: on
+            - label: OFF
+              value: off
     state_to:
       name: State When light is turned on
       description: "The state when light is on"
@@ -20,8 +22,10 @@ blueprint:
       selector:
         select:
           options:
-            - "on"
-            - "off"
+            - label: ON
+              value: on
+            - label: OFF
+              value: off
       
     door_entity:
       name: Door Sensor
