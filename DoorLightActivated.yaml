@@ -12,7 +12,7 @@ blueprint:
         options:
           select: 
             - on
-          - off
+            - off
       
     state_to:
       name: State When light is turned on
