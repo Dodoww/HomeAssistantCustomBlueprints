@@ -9,7 +9,7 @@ blueprint:
       description: "The state when light is off"
       default: "off"
       selector:
-        select: 
+        select:
           options:
             - "on"
             - "off"
@@ -18,7 +18,7 @@ blueprint:
       description: "The state when light is on"
       default: "on"
       selector:
-        select: 
+        select:
           options:
             - "on"
             - "off"
