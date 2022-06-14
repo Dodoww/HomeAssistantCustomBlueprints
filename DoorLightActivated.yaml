@@ -7,22 +7,21 @@ blueprint:
     state_from: 
       name: State When light is turned off
       description: "The state when light is off"
-      default: off
+      default: "off"
       selector:
         select: 
           options:
-            - on
-            - off
-      
+            - "on"
+            - "off"
     state_to:
       name: State When light is turned on
       description: "The state when light is on"
-      default: on
+      default: "on"
       selector:
         select: 
           options:
-            - on
-            - off
+            - "on"
+            - "off"
       
     door_entity:
       name: Door Sensor
