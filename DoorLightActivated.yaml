@@ -5,8 +5,8 @@ blueprint:
   source_url: https://github.com/Dodoww/HomeAssistantCustomBlueprints/blob/main/DoorLightActivated.yaml
   input:
     state_from: 
-      name: State When light is turned off
-      description: "The state when light is off"
+      name: State of sensor when light is turned off
+      description: "The state of sensor when light is off"
       default: "off"
       selector:
         select:
@@ -16,8 +16,8 @@ blueprint:
             - label: "OFF"
               value: "off"
     state_to:
-      name: State When light is turned on
-      description: "The state when light is on"
+      name: State of sensor when light is turned on
+      description: "The state of sensor when light is on"
       default: "on"
       selector:
         select:
