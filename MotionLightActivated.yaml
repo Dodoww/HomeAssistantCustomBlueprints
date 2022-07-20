@@ -45,6 +45,16 @@ blueprint:
       description: Message of telegram notification
       selector:
         text:
+    brightness:
+      name: Brightness
+      description: Brightness
+      default: 50
+      selector:
+        number:
+          min: 1.0
+          max: 100.0
+          step: 1.0
+          mode: slider
 # If motion is detected within the delay,
 # we restart the script.
 mode: restart
@@ -64,6 +74,8 @@ condition:
 action:
   - alias: "Turn on the light"
     service: light.turn_on
+      data:
+        brightness_pct: !input night_brightness
     target: !input light_target
   - alias: "Wait until there is no motion from device"
     wait_for_trigger:
